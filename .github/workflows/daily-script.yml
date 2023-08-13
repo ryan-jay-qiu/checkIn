@@ -2,7 +2,8 @@ name: Daily Script
 
 on:
   schedule:
-    - cron: '0 5 30 * *'  # 每天 UTC 00:00 执行
+    # - cron: '0 5 40 * *'  # 每天 UTC 00:00 执行
+    - cron: '*/5 * * * *'
 
 jobs:
   run-script:
@@ -18,4 +19,4 @@ jobs:
           node-version: '14'
 
       - name: Run script
-        run: node ./index.js
+        run: node ./dist/main.js
