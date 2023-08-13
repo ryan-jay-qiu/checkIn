@@ -1,4 +1,5 @@
 const axios = require("axios")
+const mailer = require("../utils/sendEmail.js")
 axios({
   url:"https://ut.xiaojukeji.com/ut/welfare/api/action/dailySign?wsgsig=dd03-TVMWLw5kbU3BKkMGhW6D9OMrAEuGLakAiiAcEIEWAEu0IeAHqfPG9YMnak30IUICkbEJcOxl9FgE8hF7Uc1cEH2i9Eo8IE6BhfddFOYs9koEHreEUtI7a1Fn9rJa2AB7%2FXlGgH1",
   headers : {
@@ -19,9 +20,11 @@ axios({
   data: {"lang":"zh-CN","token":"IrUdMMPIRdgMCaSPkMyYcZ6inFHQRs-18drG7KYWpxgkzDmuwlAMQNG93NqK7PhN9m7-hzA0DwlEFWXvFKlOd3amkviiiyJMI02YK-lVNYTppPUaXk2HhnkRZiFVmJUE4e_kn1wjtI0yenXzFsKVDGEjdz6v7_uykVVV4xBupLWwqqWUItxJbLiv5t57Q3ic7ZPU4xcAAP__","access_key_id":9,"appversion":"6.6.64","channel":1100000002,"_ds":"","lat":"32.06522542317708","lng":"118.66510932074652","platform":"mp","env":"{\"cityId\":\"11\",\"token\":\"IrUdMMPIRdgMCaSPkMyYcZ6inFHQRs-18drG7KYWpxgkzDmuwlAMQNG93NqK7PhN9m7-hzA0DwlEFWXvFKlOd3amkviiiyJMI02YK-lVNYTppPUaXk2HhnkRZiFVmJUE4e_kn1wjtI0yenXzFsKVDGEjdz6v7_uykVVV4xBupLWwqqWUItxJbLiv5t57Q3ic7ZPU4xcAAP__\",\"longitude\":\"118.66510932074652\",\"latitude\":\"32.06522542317708\",\"appid\":\"30012\",\"fromChannel\":\"2\",\"wxScene\":1089,\"sceneId\":1089,\"openId\":\"oJJUI0cMYMPvfVAKkn9NH0FJgYIQ\"}","dchn":"W0dzOxO"}
 }
 ).then((res) => {
-  console.log("didi",res.data)
+  console.log("yunshanfu",res.data)
+  mailer.sendMail("yunshanfu",res.data);
 }).catch(res=>{
   console.log(res)
+  mailer.sendMail("yunshanfu",res.data);
 });
 
 

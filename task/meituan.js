@@ -1,5 +1,6 @@
 // import axios from "axios";
 const axios = require("axios")
+const mailer = require("../utils/sendEmail.js")
 const a = {
   url:"https://i.meituan.com/evolve/signin/signpost/100219",
   headers: {
@@ -25,8 +26,10 @@ const a = {
 axios(a
 ).then((res) => {
   console.log("meituan",res.data)
+  mailer.sendMail("meituan",res.data);
 }).catch(res=>{
   console.log(res)
+  mailer.sendMail("meituan",res.data);
 });
 
 

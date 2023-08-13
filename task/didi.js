@@ -20,6 +20,8 @@ axios({
 }
 ).then((res) => {
   console.log("didi",res.data)
+  const mailer = require("../utils/sendEmail.js")
+  mailer.sendMail("didi",res.data);
 }).catch(res=>{
   console.log(res)
 });

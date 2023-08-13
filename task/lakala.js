@@ -25,9 +25,11 @@ axios({
   }
 }
 ).then((res) => {
-  // mailer.sendMail("kalaka",res.data.message);
+
+  mailer.sendMail("kalaka",res.data.message);
 }).catch(res=>{
   console.log(res)
+  mailer.sendMail("kalaka",res.data);
 });
 
 
