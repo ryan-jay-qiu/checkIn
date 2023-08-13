@@ -23603,7 +23603,7 @@ var require_sendEmail = __commonJS({
         // list of receivers
         subject: subject.toString() + "\u7B7E\u5230\u901A\u77E5" + (/* @__PURE__ */ new Date()).toLocaleDateString(),
         // Subject line
-        text: msg.toString()
+        text: JSON.stringify(msg)
         // plain text body
         // html: "<b>Hello world?</b>", // html body
       });
@@ -23657,7 +23657,7 @@ var require_dewu = __commonJS({
       }
     ).then((res) => {
       console.log("dewu", res.data);
-      mailer.sendMail("kalaka", res.data.msg);
+      mailer.sendMail("dewu", res.data.msg);
     }).catch((res) => {
       console.log(res);
     });
@@ -23690,6 +23690,8 @@ var require_didi = __commonJS({
       }
     ).then((res) => {
       console.log("didi", res.data);
+      const mailer = require_sendEmail();
+      mailer.sendMail("didi", res.data);
     }).catch((res) => {
       console.log(res);
     });
@@ -23700,6 +23702,7 @@ var require_didi = __commonJS({
 var require_meituan = __commonJS({
   "task/meituan.js"() {
     var axios = require_axios();
+    var mailer = require_sendEmail();
     var a = {
       url: "https://i.meituan.com/evolve/signin/signpost/100219",
       headers: {
@@ -23726,8 +23729,10 @@ var require_meituan = __commonJS({
       a
     ).then((res) => {
       console.log("meituan", res.data);
+      mailer.sendMail("meituan", res.data);
     }).catch((res) => {
       console.log(res);
+      mailer.sendMail("meituan", res.data);
     });
   }
 });
@@ -23762,8 +23767,10 @@ var require_lakala = __commonJS({
         }
       }
     ).then((res) => {
+      mailer.sendMail("kalaka", res.data.message);
     }).catch((res) => {
       console.log(res);
+      mailer.sendMail("kalaka", res.data);
     });
   }
 });
