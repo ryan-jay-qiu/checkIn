@@ -1,5 +1,5 @@
 const axios = require("axios")
-
+const mailer = require("../utils/sendEmail.js")
 axios({
   url:"https://app.dewu.com/hacking-game-center/v1/sign/sign?sign=fe26befc49444d362c8f17463630bdba",
   headers : { 
