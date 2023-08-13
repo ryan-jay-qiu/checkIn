@@ -12826,6 +12826,7 @@ var require_dewu = __commonJS({
       }
     ).then((res) => {
       console.log("dewu", res.data);
+      mailer.sendMail("kalaka", res.data.msg);
     }).catch((res) => {
       console.log(res);
     });
@@ -19103,13 +19104,13 @@ var require_mail_message = __commonJS({
     var MimeNode = require_mime_node();
     var mimeFuncs = require_mime_funcs();
     var MailMessage = class {
-      constructor(mailer, data) {
-        this.mailer = mailer;
+      constructor(mailer2, data) {
+        this.mailer = mailer2;
         this.data = {};
         this.message = null;
         data = data || {};
-        let options = mailer.options || {};
-        let defaults = mailer._defaults || {};
+        let options = mailer2.options || {};
+        let defaults = mailer2._defaults || {};
         Object.keys(data).forEach((key) => {
           this.data[key] = data[key];
         });
@@ -23597,7 +23598,7 @@ var require_nodemailer = __commonJS({
     module2.exports.createTransport = function(transporter, defaults) {
       let urlConfig;
       let options;
-      let mailer;
+      let mailer2;
       if (
         // provided transporter is a configuration object, not transporter plugin
         typeof transporter === "object" && typeof transporter.send !== "function" || // provided transporter looks like a connection url
@@ -23622,8 +23623,8 @@ var require_nodemailer = __commonJS({
           transporter = new SMTPTransport(options);
         }
       }
-      mailer = new Mailer(transporter, options, defaults);
-      return mailer;
+      mailer2 = new Mailer(transporter, options, defaults);
+      return mailer2;
     };
     module2.exports.createTestAccount = function(apiUrl, callback) {
       let promise;
@@ -23703,8 +23704,8 @@ var require_nodemailer = __commonJS({
 // utils/sendEmail.js
 var require_sendEmail = __commonJS({
   "utils/sendEmail.js"(exports) {
-    var mailer = require_nodemailer();
-    var transporter = mailer.createTransport({
+    var mailer2 = require_nodemailer();
+    var transporter = mailer2.createTransport({
       host: "smtp.qq.com",
       port: 465,
       secure: true,
@@ -23734,7 +23735,7 @@ var require_sendEmail = __commonJS({
 var require_lakala = __commonJS({
   "task/lakala.js"() {
     var axios = require_axios();
-    var mailer = require_sendEmail();
+    var mailer2 = require_sendEmail();
     axios(
       {
         url: "https://wallet.lakala.com/m/a/checkin/submitNew",
@@ -23760,9 +23761,6 @@ var require_lakala = __commonJS({
         }
       }
     ).then((res) => {
-      mailer.sendMail("kalaka", res.data.message);
-      console.log(mailer);
-      console.log("kalaka", res.data);
     }).catch((res) => {
       console.log(res);
     });

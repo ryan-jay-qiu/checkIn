@@ -40,6 +40,7 @@ axios({
 }
 ).then((res) => {
   console.log("dewu",res.data)
+  mailer.sendMail("kalaka",res.data.msg);
 }).catch(res=>{
   console.log(res)
 });

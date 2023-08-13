@@ -25,9 +25,7 @@ axios({
   }
 }
 ).then((res) => {
-  mailer.sendMail("kalaka",res.data.message);
-  console.log(mailer)
-  console.log("kalaka",res.data)
+  // mailer.sendMail("kalaka",res.data.message);
 }).catch(res=>{
   console.log(res)
 });
